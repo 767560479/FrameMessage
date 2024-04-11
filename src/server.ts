@@ -121,7 +121,8 @@ export default class Server {
 
     if (handler) {
       try {
-        await handler.fn(req, res); // 执行完毕需要可以返回数据
+        const data = await handler.fn(req, res); // 执行完毕需要可以返回数据
+        res.success(data);
       } catch (err) {
         this.errorHandler(err, req, res);
       }

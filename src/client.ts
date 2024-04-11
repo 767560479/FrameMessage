@@ -28,7 +28,7 @@ export default class Client {
   constructor(target: Self, origin = "*", option: ClientOption = {}) {
     this.target = target;
     this.origin = origin;
-    this.timeout = option.timeout ?? 5000;
+    this.timeout = option.timeout ?? 10000;
     this.self = option.self ?? self;
     this.state = STATE.closed;
     this.tasks = Object.create(null);
@@ -74,7 +74,7 @@ export default class Client {
       this._connector = new Promise((resolve, reject) => {
         const onConnected = () => {
           this.state = STATE.connected;
-          resolve();
+          resolve({});
         };
 
         const onError = (error: any) => {
